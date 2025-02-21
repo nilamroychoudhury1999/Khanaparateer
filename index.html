@@ -61,6 +61,30 @@
             cursor: pointer;
         }
         .btn:hover { background: #e65c5c; }
+
+        /* Arrow Keys UI */
+        .controls {
+            display: none;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        .arrow-btn {
+            width: 50px;
+            height: 50px;
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            font-size: 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .arrow-btn:hover { background: #e65c5c; }
+        
+        @media (min-width: 768px) {
+            .controls { display: flex; flex-wrap: wrap; justify-content: center; }
+            .arrow-container { display: grid; grid-template-columns: 50px 50px 50px; grid-gap: 5px; }
+        }
     </style>
 </head>
 <body>
@@ -69,12 +93,24 @@
         <div id="score">Score: 0</div>
         <div id="game-board"></div>
         <button id="restart-btn" class="btn">Restart Game</button>
+
+        <!-- Arrow Keys UI (Only on Desktop) -->
+        <div class="controls">
+            <div class="arrow-container">
+                <button class="arrow-btn" data-direction="up">⬆️</button>
+                <button class="arrow-btn" data-direction="left">⬅️</button>
+                <button class="arrow-btn" data-direction="right">➡️</button>
+                <button class="arrow-btn" data-direction="down">⬇️</button>
+            </div>
+        </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const board = document.getElementById("game-board");
             const scoreDisplay = document.getElementById("score");
             const restartBtn = document.getElementById("restart-btn");
+            const arrowButtons = document.querySelectorAll(".arrow-btn");
 
             let score = 0;
             let grid = Array(4).fill().map(() => Array(4).fill(0));
@@ -140,14 +176,6 @@
                         moved = moved || newRow.some((val, i) => val !== row[i]);
                         return direction === "right" ? newRow.reverse() : newRow;
                     });
-                } else {
-                    for (let c = 0; c < 4; c++) {
-                        let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-                        let newCol = slide(combine(slide(direction === "down" ? col.reverse() : col)));
-                        moved = moved || newCol.some((val, i) => val !== col[i]);
-                        if (direction === "down") newCol.reverse();
-                        for (let r = 0; r < 4; r++) grid[r][c] = newCol[r];
-                    }
                 }
                 if (moved) addRandomTile();
                 createBoard();
@@ -159,17 +187,8 @@
                 }
             });
 
-            let startX, startY;
-            board.addEventListener("touchstart", (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
-
-            board.addEventListener("touchend", (e) => {
-                let dx = e.changedTouches[0].clientX - startX;
-                let dy = e.changedTouches[0].clientY - startY;
-                if (Math.abs(dx) > Math.abs(dy)) move(dx > 0 ? "right" : "left");
-                else move(dy > 0 ? "down" : "up");
+            arrowButtons.forEach(btn => {
+                btn.addEventListener("click", () => move(btn.dataset.direction));
             });
 
             restartBtn.addEventListener("click", () => {
