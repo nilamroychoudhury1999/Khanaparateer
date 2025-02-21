@@ -52,11 +52,6 @@
             background-color: #f9d3d3;
             border-radius: 8px;
         }
-        .tile img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
         .btn {
             margin-top: 20px;
             padding: 10px 20px;
@@ -86,18 +81,18 @@
             const board = document.getElementById("game-board");
             const restartBtn = document.getElementById("restart-btn");
             
-            const cupcakeImages = {
-                2: "cupcake1.png",
-                4: "cupcake2.png",
-                8: "cupcake3.png",
-                16: "cupcake4.png",
-                32: "cupcake5.png",
-                64: "cupcake6.png",
-                128: "cupcake7.png",
-                256: "cupcake8.png",
-                512: "cupcake9.png",
-                1024: "cupcake10.png",
-                2048: "cupcake11.png"
+            const cupcakeIcons = {
+                2: "🧁",
+                4: "🧁🧁",
+                8: "🧁🧁🧁",
+                16: "🧁🧁🧁🧁",
+                32: "🧁🧁🧁🧁🧁",
+                64: "🧁🧁🧁🧁🧁🧁",
+                128: "🧁🧁🧁🧁🧁🧁🧁",
+                256: "🧁🧁🧁🧁🧁🧁🧁🧁",
+                512: "🧁🧁🧁🧁🧁🧁🧁🧁🧁",
+                1024: "🧁🧁🧁🧁🧁🧁🧁🧁🧁🧁",
+                2048: "🧁🧁🧁🧁🧁🧁🧁🧁🧁🧁🧁"
             };
             
             let grid = Array(4).fill().map(() => Array(4).fill(0));
@@ -109,9 +104,7 @@
                         const tileDiv = document.createElement("div");
                         tileDiv.classList.add("tile");
                         if (tile !== 0) {
-                            const img = document.createElement("img");
-                            img.src = cupcakeImages[tile] || "";
-                            tileDiv.appendChild(img);
+                            tileDiv.textContent = cupcakeIcons[tile] || "";
                         }
                         board.appendChild(tileDiv);
                     });
@@ -151,16 +144,11 @@
                     grid = grid.map(row => slide(combine(slide(row))));
                 } else if (direction === "right") {
                     grid = grid.map(row => slide(combine(slide(row.reverse()))).reverse());
-                } else if (direction === "up") {
+                } else if (direction === "up" || direction === "down") {
                     for (let c = 0; c < 4; c++) {
                         let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-                        col = slide(combine(slide(col)));
-                        for (let r = 0; r < 4; r++) grid[r][c] = col[r];
-                    }
-                } else if (direction === "down") {
-                    for (let c = 0; c < 4; c++) {
-                        let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-                        col = slide(combine(slide(col.reverse()))).reverse();
+                        col = slide(combine(slide(direction === "up" ? col : col.reverse())));
+                        if (direction === "down") col.reverse();
                         for (let r = 0; r < 4; r++) grid[r][c] = col[r];
                     }
                 }
@@ -169,10 +157,7 @@
             }
 
             document.addEventListener("keydown", (event) => {
-                if (event.key === "ArrowLeft") move("left");
-                if (event.key === "ArrowRight") move("right");
-                if (event.key === "ArrowUp") move("up");
-                if (event.key === "ArrowDown") move("down");
+                if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) move(event.key.replace("Arrow", "").toLowerCase());
             });
 
             restartBtn.addEventListener("click", () => {
