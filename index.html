@@ -1,97 +1,99 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Play 2048 Multi-Themed - A fun and engaging twist on the classic 2048 game with themes like Cupcake, Minecraft, and Taylor Swift!">
-    <meta name="keywords" content="2048 game, puzzle game, Cupcake 2048, Minecraft 2048, Taylor Swift 2048">
-    <meta name="author" content="Your Name">
-    <meta property="og:title" content="2048 Multi-Themed Game">
-    <meta property="og:description" content="Merge tiles, switch themes, and achieve the highest score in 2048 Multi-Themed!">
-    <meta property="og:type" content="website">
-    <title>2048 Multi-Themed - Play Now!</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; text-align: center; background: #f4f4f9; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; color: #333; }
-        .container { max-width: 90%; width: 400px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
-        .title { font-size: 26px; font-weight: 700; margin-bottom: 15px; }
-        #score { font-size: 20px; font-weight: 600; margin-bottom: 15px; }
-        #game-board { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; background: #ddd; padding: 12px; border-radius: 12px; user-select: none; }
-        .tile { display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 600; background: #fff; border-radius: 6px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: 0.2s ease-in-out; }
-        .btn { margin: 10px; padding: 12px 18px; border: none; background: #4CAF50; color: white; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s; }
-        .btn:hover { background: #45a049; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">2048 Multi-Themed Game</h1>
-        <div id="score">Score: 0</div>
-        <div id="game-board"></div>
-        <button id="restart-btn" class="btn">Restart Game</button>
-        <button id="cupcake-btn" class="btn">2048 Cupcake</button>
-        <button id="minecraft-btn" class="btn">2048 Minecraft</button>
-        <button id="taylor-btn" class="btn">2048 Taylor Swift</button>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const board = document.getElementById("game-board");
-            const scoreDisplay = document.getElementById("score");
-            const restartBtn = document.getElementById("restart-btn");
-            const cupcakeBtn = document.getElementById("cupcake-btn");
-            const minecraftBtn = document.getElementById("minecraft-btn");
-            const taylorBtn = document.getElementById("taylor-btn");let score = 0;
-        let grid = Array(4).fill().map(() => Array(4).fill(0));
-        let theme = "cupcake";
-        
-        const themes = {
-            cupcake: { 2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒", 32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂", 256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆" },
-            minecraft: { 2: "🌿", 4: "🌲", 8: "🪵", 16: "⛏️", 32: "🏠", 64: "🧱", 128: "🔥", 256: "⚒️", 512: "⚔️", 1024: "👑", 2048: "🐉" },
-            taylor: { 2: "🎤", 4: "🎵", 8: "💃", 16: "🌟", 32: "🎸", 64: "👗", 128: "💖", 256: "💜", 512: "🕶️", 1024: "🎼", 2048: "👑" }
-        };
-
-        function updateScore(value) {
-            score += value;
-            scoreDisplay.textContent = `Score: ${score}`;
-        }
-
-        function createBoard() {
-            board.innerHTML = "";
-            grid.forEach(row => {
-                row.forEach(tile => {
-                    const tileDiv = document.createElement("div");
-                    tileDiv.classList.add("tile");
-                    if (tile !== 0) tileDiv.textContent = themes[theme][tile] || "";
-                    board.appendChild(tileDiv);
-                });
-            });
-        }
-        
-        function addRandomTile() {
-            let emptyTiles = [];
-            grid.forEach((row, r) => row.forEach((tile, c) => { if (tile === 0) emptyTiles.push({ r, c }); }));
-            if (emptyTiles.length > 0) {
-                let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-                grid[r][c] = 2;
-            }
-        }
-        
-        restartBtn.addEventListener("click", () => {
-            grid = Array(4).fill().map(() => Array(4).fill(0));
-            score = 0;
-            updateScore(0);
-            addRandomTile();
-            addRandomTile();
-            createBoard();
-        });
-        
-        cupcakeBtn.addEventListener("click", () => { theme = "cupcake"; createBoard(); });
-        minecraftBtn.addEventListener("click", () => { theme = "minecraft"; createBoard(); });
-        taylorBtn.addEventListener("click", () => { theme = "taylor"; createBoard(); });
-        
-        addRandomTile();
-        addRandomTile();
-        createBoard();
-    });
+<!DOCTYPE html>    <html lang="en">    
+<head>    
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
+    <title>2048 Variants</title>    
+    <style>    
+        * { margin: 0; padding: 0; box-sizing: border-box; }    
+        body {    
+            font-family: Arial, sans-serif;    
+            text-align: center;    
+            background-color: #f8e8e8;    
+            display: flex;    
+            flex-direction: column;    
+            align-items: center;    
+            justify-content: center;    
+            height: 100vh;    
+            overflow: hidden;    
+        }    
+        .container {    
+            max-width: 90%;    
+            width: 400px;    
+            background: white;    
+            padding: 20px;    
+            border-radius: 10px;    
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    
+        }    
+        .tabs {    
+            display: flex;    
+            justify-content: space-around;    
+            margin-bottom: 15px;    
+        }    
+        .tab {    
+            padding: 10px 15px;    
+            cursor: pointer;    
+            background: #ff6b6b;    
+            color: white;    
+            border-radius: 5px;    
+        }    
+        .tab.active { background: #e65c5c; }    
+        #game-board {    
+            display: grid;    
+            grid-template-columns: repeat(4, 1fr);    
+            grid-template-rows: repeat(4, 1fr);    
+            gap: 10px;    
+            background: #e0b3b3;    
+            padding: 10px;    
+            border-radius: 10px;    
+            user-select: none;    
+        }    
+        .tile {    
+            display: flex;    
+            align-items: center;    
+            justify-content: center;    
+            font-size: 24px;    
+            font-weight: bold;    
+            background-color: #f9d3d3;    
+            border-radius: 8px;    
+        }    
+    </style>    
+</head>    
+<body>    
+    <div class="container">    
+        <div class="tabs">    
+            <div class="tab active" onclick="changeTheme('cupcake')">2048 Cupcake</div>    
+            <div class="tab" onclick="changeTheme('minecraft')">2048 Minecraft</div>    
+            <div class="tab" onclick="changeTheme('taylor')">2048 Taylor Swift</div>    
+        </div>    
+        <div id="game-board"></div>    
+    </div>    
+    <script>    
+        let grid = Array(4).fill().map(() => Array(4).fill(0));    
+        let themes = {    
+            cupcake: { 2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒", 32: "🧁🍫" },    
+            minecraft: { 2: "🟫", 4: "🪵", 8: "🧱", 16: "⛏️", 32: "🏠" },    
+            taylor: { 2: "🎤", 4: "🎸", 8: "🎶", 16: "💃", 32: "👑" }    
+        };    
+        let currentTheme = 'cupcake';    function createBoard() {    
+        let board = document.getElementById("game-board");    
+        board.innerHTML = "";    
+        grid.forEach(row => row.forEach(tile => {    
+            let div = document.createElement("div");    
+            div.classList.add("tile");    
+            div.textContent = tile ? themes[currentTheme][tile] || "" : "";    
+            board.appendChild(div);    
+        }));    
+    }    
+    
+    function changeTheme(theme) {    
+        currentTheme = theme;    
+        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));    
+        event.target.classList.add("active");    
+        createBoard();    
+    }    
+    
+    createBoard();    
 </script>
 
-</body>
+</body>    
 </html>
