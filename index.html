@@ -1,109 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>2048 Cupcake, 2048 Minecraft, 2048 Taylor Swift - Play Now!</title>
-    <meta name="description" content="Play 2048 Cupcake, 2048 Minecraft, and 2048 Taylor Swift – fun variations of the classic 2048 game! Swipe, merge, and reach the highest score.">
-    <meta name="keywords" content="2048 Cupcake, 2048 Minecraft, 2048 Taylor Swift, Play 2048, Merge Game, 2048 Variations">
-    <meta property="og:title" content="2048 Cupcake, 2048 Minecraft, 2048 Taylor Swift">
-    <meta property="og:description" content="Enjoy different 2048 game versions like 2048 Cupcake, Minecraft, and Taylor Swift. Merge tiles and win!">
-    <meta property="og:type" content="game">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <title>2048 Multi-Themed</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; text-align: center; background-color: #f8e8e8; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        body { font-family: Arial, sans-serif; text-align: center; background: #f8e8e8; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
         .container { max-width: 90%; width: 400px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-        .title { font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+        .title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
         #score { font-size: 18px; font-weight: bold; margin-bottom: 20px; }
         #game-board { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; background: #e0b3b3; padding: 10px; border-radius: 10px; user-select: none; }
-        .tile { display: flex; align-items: center; justify-content: center; font-size: clamp(16px, 4vw, 24px); font-weight: bold; background-color: #f9d3d3; border-radius: 8px; transition: all 0.2s ease-in-out; }
-        .btn { margin-top: 20px; padding: 10px 20px; border: none; background: #ff6b6b; color: white; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .tile { display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; background: #f9d3d3; border-radius: 8px; transition: 0.2s ease-in-out; }
+        .btn { margin: 10px; padding: 10px 15px; border: none; background: #ff6b6b; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; }
         .btn:hover { background: #e65c5c; }
-        .tab-container { display: flex; gap: 10px; margin-bottom: 10px; }
-        .tab { padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; background: #ccc; }
-        .active { background: #ff6b6b; color: white; }
     </style>
 </head>
 <body>
-    <h1 class="title">2048 Variants</h1>
-    <div class="tab-container">
-        <button class="tab active" onclick="changeGame('cupcake')">2048 Cupcake</button>
-        <button class="tab" onclick="changeGame('minecraft')">2048 Minecraft</button>
-        <button class="tab" onclick="changeGame('taylor')">2048 Taylor Swift</button>
-    </div>
     <div class="container">
-        <h2 id="game-title">2048 Cupcake</h2>
+        <h1 class="title">2048 Multi-Themed</h1>
         <div id="score">Score: 0</div>
         <div id="game-board"></div>
         <button id="restart-btn" class="btn">Restart Game</button>
+        <button id="cupcake-btn" class="btn">2048 Cupcake</button>
+        <button id="minecraft-btn" class="btn">2048 Minecraft</button>
+        <button id="taylor-btn" class="btn">2048 Taylor Swift</button>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const board = document.getElementById("game-board");
             const scoreDisplay = document.getElementById("score");
             const restartBtn = document.getElementById("restart-btn");
-            const gameTitle = document.getElementById("game-title");
-            let score = 0;
-            let grid = Array(4).fill().map(() => Array(4).fill(0));
-            let currentGame = "cupcake";
+            const cupcakeBtn = document.getElementById("cupcake-btn");
+            const minecraftBtn = document.getElementById("minecraft-btn");
+            const taylorBtn = document.getElementById("taylor-btn");let score = 0;
+        let grid = Array(4).fill().map(() => Array(4).fill(0));
+        let theme = "cupcake";
+        
+        const themes = {
+            cupcake: { 2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒", 32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂", 256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆" },
+            minecraft: { 2: "🌿", 4: "🌲", 8: "🪵", 16: "⛏️", 32: "🏠", 64: "🧱", 128: "🔥", 256: "⚒️", 512: "⚔️", 1024: "👑", 2048: "🐉" },
+            taylor: { 2: "🎤", 4: "🎵", 8: "💃", 16: "🌟", 32: "🎸", 64: "👗", 128: "💖", 256: "💜", 512: "🕶️", 1024: "🎼", 2048: "👑" }
+        };
 
-            const gameIcons = {
-                cupcake: { 2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒", 32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂", 256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆" },
-                minecraft: { 2: "⛏️", 4: "🪵", 8: "🧱", 16: "💎", 32: "⚒️", 64: "🏠", 128: "🐷", 256: "🐔", 512: "🐑", 1024: "🐺", 2048: "👑" },
-                taylor: { 2: "👩", 4: "👩👩", 8: "🎤", 16: "🎸", 32: "🎶", 64: "💃", 128: "🏆", 256: "🌟", 512: "👑", 1024: "❤️", 2048: "🔥" }
-            };
+        function updateScore(value) {
+            score += value;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
 
-            function updateScore(value) { score += value; scoreDisplay.textContent = `Score: ${score}`; }
-
-            function createBoard() {
-                board.innerHTML = "";
-                grid.forEach(row => row.forEach(tile => {
+        function createBoard() {
+            board.innerHTML = "";
+            grid.forEach(row => {
+                row.forEach(tile => {
                     const tileDiv = document.createElement("div");
                     tileDiv.classList.add("tile");
-                    if (tile !== 0) tileDiv.textContent = gameIcons[currentGame][tile] || "";
+                    if (tile !== 0) tileDiv.textContent = themes[theme][tile] || "";
                     board.appendChild(tileDiv);
-                }));
+                });
+            });
+        }
+
+        function addRandomTile() {
+            let emptyTiles = [];
+            grid.forEach((row, r) => row.forEach((tile, c) => { if (tile === 0) emptyTiles.push({ r, c }); }));
+            if (emptyTiles.length > 0) {
+                let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+                grid[r][c] = 2;
             }
+        }
 
-            function addRandomTile() {
-                let emptyTiles = [];
-                grid.forEach((row, r) => row.forEach((tile, c) => { if (tile === 0) emptyTiles.push({ r, c }); }));
-                if (emptyTiles.length > 0) {
-                    let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-                    grid[r][c] = 2;
-                }
-            }
+        function move() {
+            addRandomTile();
+            createBoard();
+        }
 
-            function move(direction) {
-                let moved = false;
-                const slide = row => [...row.filter(tile => tile), ...Array(4 - row.filter(tile => tile).length).fill(0)];
-                const combine = row => row.map((tile, i, arr) => tile && tile === arr[i + 1] ? (arr[i + 1] = 0, tile * 2) : tile);
-
-                if (["left", "right"].includes(direction)) {
-                    grid = grid.map(row => {
-                        let newRow = slide(combine(slide(direction === "right" ? row.reverse() : row)));
-                        return direction === "right" ? newRow.reverse() : newRow;
-                    });
-                } else {
-                    for (let c = 0; c < 4; c++) {
-                        let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-                        let newCol = slide(combine(slide(direction === "down" ? col.reverse() : col)));
-                        if (direction === "down") newCol.reverse();
-                        for (let r = 0; r < 4; r++) grid[r][c] = newCol[r];
-                    }
-                }
-                if (moved) addRandomTile();
-                createBoard();
-            }
-
-            function changeGame(game) { currentGame = game; gameTitle.textContent = `2048 ${game.charAt(0).toUpperCase() + game.slice(1)}`; createBoard(); }
-            
-            restartBtn.addEventListener("click", () => { grid = Array(4).fill().map(() => Array(4).fill(0)); score = 0; updateScore(0); addRandomTile(); addRandomTile(); createBoard(); });
-
-            addRandomTile(); addRandomTile(); createBoard();
+        restartBtn.addEventListener("click", () => {
+            grid = Array(4).fill().map(() => Array(4).fill(0));
+            score = 0;
+            updateScore(0);
+            addRandomTile();
+            addRandomTile();
+            createBoard();
         });
-    </script>
+        
+        cupcakeBtn.addEventListener("click", () => { theme = "cupcake"; createBoard(); });
+        minecraftBtn.addEventListener("click", () => { theme = "minecraft"; createBoard(); });
+        taylorBtn.addEventListener("click", () => { theme = "taylor"; createBoard(); });
+        
+        addRandomTile();
+        addRandomTile();
+        createBoard();
+    });
+</script>
+
 </body>
 </html>
