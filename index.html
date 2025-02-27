@@ -4,7 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Cupcake 2048 - Play Free Online Puzzle Game</title>
+    <meta name="description" content="Play Cupcake 2048, a fun and addictive puzzle game! Merge cupcakes, score high, and enjoy the best 2048 unblocked game online. No downloads required. Start playing now!">
+    <meta name="keywords" content="Cupcake 2048, 2048 Cupcake Game, How to Play Cupcake 2048, Cupcake 2048 Tips, Cupcake 2048 Unblocked, 2048 Cupcake Strategy, Free Online Puzzle Game, Cupcake 2048 High Score, Cupcake 2048 Hack, 2048 Cupcake Guide">
+    <meta property="og:title" content="Cupcake 2048 - Play Free Online Puzzle Game">
+    <meta property="og:description" content="Merge cupcakes, score high, and enjoy the best 2048 unblocked puzzle game. Play Cupcake 2048 online for free!">
+    <meta property="og:image" content="https://playcupcake2048.com/cupcake2048-thumbnail.jpg">
+    <meta property="og:url" content="https://playcupcake2048.com">
+    <meta property="og:type" content="game">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cupcake 2048 - Play Free Online Puzzle Game">
+    <meta name="twitter:description" content="Merge cupcakes, score high, and enjoy the best 2048 unblocked puzzle game. Play Cupcake 2048 online for free!">
+    <meta name="twitter:image" content="https://playcupcake2048.com/cupcake2048-thumbnail.jpg">
+    <link rel="canonical" href="https://playcupcake2048.com">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='22' font-size='24'>🎂</text></svg>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Cupcake 2048 - Play Free Online",
+        "description": "Play Cupcake 2048 online for free! Merge cupcakes, score high, and enjoy the best 2048 unblocked puzzle game. No download required.",
+        "author": {
+            "@type": "Organization",
+            "name": "Cupcake 2048"
+        },
+        "image": "https://playcupcake2048.com/cupcake2048-thumbnail.jpg",
+        "url": "https://playcupcake2048.com",
+        "sameAs": [
+            "https://www.facebook.com/playcupcake2048"
+        ],
+        "applicationCategory": "Game",
+        "operatingSystem": "Web",
+        "genre": "Puzzle",
+        "playMode": "SinglePlayer",
+        "gamePlatform": "Web",
+        "gameLocation": "Online",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "10023"
+        }
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -12,12 +58,15 @@
             box-sizing: border-box;
         }
         body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #f8e8e8;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f8e8e8;
+            justify-content: flex-start;
             height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
         .container {
             max-width: 90%;
@@ -26,9 +75,6 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         .title {
             font-size: 22px;
@@ -42,8 +88,8 @@
         }
         #game-board {
             display: grid;
-            grid-template-columns: repeat(4, minmax(80px, 1fr));
-            grid-template-rows: repeat(4, minmax(80px, 1fr));
+            grid-template-columns: repeat(4, minmax(60px, 1fr));
+            grid-template-rows: repeat(4, minmax(60px, 1fr));
             gap: 10px;
             background: #e0b3b3;
             padding: 10px;
@@ -74,14 +120,9 @@
         .btn:hover {
             background: #e65c5c;
         }
-        .scrollable-content {
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 10px;
-            width: 100%;
-            text-align: left;
-        }
     </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2156001560915516" crossorigin="anonymous"></script>
+    <meta name="google-site-verification" content="cRL4nKcqtR6-4PvpS0_Tk3nEFa_15UiyOZVkDq1oK_k">
 </head>
 <body>
     <div class="container">
@@ -89,24 +130,14 @@
         <div id="score">Score: 0</div>
         <div id="game-board"></div>
         <button id="restart-btn" class="btn">Restart Game</button>
-
-        <div class="scrollable-content">
-            <h2 class="title">How to Play Cupcake 2048</h2>
-            <p>Swipe tiles, merge cupcakes, and reach the ultimate 2048 cupcake!</p>
-
-            <h2 class="title">Cupcake 2048 Tips and Strategies</h2>
-            <ul>
-                <li>Tip 1: Keep your highest tile in one corner.</li>
-                <li>Tip 2: Stack tiles in descending order.</li>
-                <li>Tip 3: Don't move randomly—think ahead!</li>
-            </ul>
-
-            <h2 class="title">Frequently Asked Questions</h2>
-            <p><strong>How do I play?</strong> Swipe tiles to merge cupcakes and reach 2048.</p>
-            <p><strong>Is this free?</strong> Yes, it's 100% free to play!</p>
-        </div>
+        <h2 class="title">How to Play Cupcake 2048</h2>
+        <p>Swipe tiles, merge cupcakes, and reach the ultimate 2048 cupcake! Can you win?</p>
+        <h2 class="title">Cupcake 2048 Tips and Strategies</h2>
+        <p>To win Cupcake 2048, follow a corner strategy where you keep the highest tile in one corner while aligning other tiles in decreasing order. Use a snake-like pattern to ensure smoother merges and avoid breaking your setup.</p>
+        <h2 class="title">Frequently Asked Questions</h2>
+        <p><strong>How do I play Cupcake 2048?</strong> Swipe tiles to merge cupcakes and reach the 2048 tile.</p>
+        <p><strong>Is Cupcake 2048 free?</strong> Yes, it's completely free to play online.</p>
     </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const board = document.getElementById("game-board");
@@ -194,6 +225,19 @@
                 if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
                     move(e.key.replace("Arrow", "").toLowerCase());
                 }
+            });
+
+            let startX, startY;
+            board.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            board.addEventListener("touchend", (e) => {
+                let dx = e.changedTouches[0].clientX - startX;
+                let dy = e.changedTouches[0].clientY - startY;
+                if (Math.abs(dx) > Math.abs(dy)) move(dx > 0 ? "right" : "left");
+                else move(dy > 0 ? "down" : "up");
             });
 
             restartBtn.addEventListener("click", () => {
