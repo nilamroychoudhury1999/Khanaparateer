@@ -3,199 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Play 2048 Cupcake - A fun and addictive twist on the classic 2048 game with delicious cupcakes. Merge cupcakes and reach the highest score!">
-    <meta name="keywords" content="2048 Cupcake, play 2048 game, merge cupcakes, puzzle game, cupcake 2048 strategy">
-    <meta name="author" content="YourBrand">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="2048 Cupcake - Play Online">
-    <meta property="og:description" content="Join the fun with 2048 Cupcake! Swipe, merge, and reach the ultimate cupcake!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com/2048-cupcake">
-    <meta property="og:image" content="https://yourwebsite.com/thumbnail.jpg">
+    <title>2048 Cupcake – Play & Win Big!</title>
+
+    <!-- Primary SEO Meta Tags -->
+    <meta name="description" content="Play 2048 Cupcake, the ultimate tile-merging puzzle! Swipe, match, and reach the ultimate cupcake tile. Can you master the game?">
+    <meta name="keywords" content="2048 Cupcake, 2048 game, cupcake puzzle, merge game, tile game, play 2048 online, best 2048 game, 2048 hack">
+    <meta name="author" content="2048Cupcake.com">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Play 2048 Cupcake – The Sweetest Puzzle Game!">
+    <meta property="og:description" content="Merge cupcakes and reach the highest score in this fun and addictive 2048 game.">
+    <meta property="og:image" content="https://example.com/2048-cupcake-banner.jpg">
+    <meta property="og:url" content="https://example.com/2048-cupcake">
+    <meta property="og:type" content="game">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2048 Cupcake - Play Now">
-    <meta name="twitter:description" content="Enjoy the sweetest version of 2048! Play now for free.">
-    
-    <!-- Structured Data for SEO -->
+    <meta name="twitter:title" content="2048 Cupcake - Play Now!">
+    <meta name="twitter:description" content="Swipe, merge, and reach the ultimate cupcake tile in the fun 2048 game!">
+    <meta name="twitter:image" content="https://example.com/2048-cupcake-twitter.jpg">
+
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Game",
+      "@type": "VideoGame",
       "name": "2048 Cupcake",
-      "url": "https://yourwebsite.com/2048-cupcake",
-      "description": "Merge cupcakes and score high in the fun 2048 Cupcake game.",
-      "author": {
-        "@type": "Person",
-        "name": "YourBrand"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "YourBrand"
-      },
-      "image": "https://yourwebsite.com/thumbnail.jpg",
-      "genre": "Puzzle"
+      "description": "Play 2048 Cupcake, a fun and addictive puzzle game where you merge cupcakes to reach the ultimate tile!",
+      "author": { "@type": "Person", "name": "2048Cupcake.com" },
+      "image": "https://example.com/2048-cupcake-banner.jpg",
+      "genre": "Puzzle",
+      "keywords": "2048 Cupcake, merge game, tile game, puzzle game, 2048 online"
     }
     </script>
 
-    <title>2048 Cupcake - Play Online Free</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='22' font-size='24'>🧁</text></svg>">
+
+    <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
-    
+
+    <!-- Styles -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background-color: #f8e8e8;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .container {
-            max-width: 90%;
-            width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        #score {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        #game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 10px;
-            background: #e0b3b3;
-            padding: 10px;
-            border-radius: 10px;
-            user-select: none;
-        }
-        .tile {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            background-color: #f9d3d3;
-            border-radius: 8px;
-            transition: all 0.2s ease-in-out;
-        }
-        .btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            background: #ff6b6b;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #e65c5c;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { text-align: center; background: #ffebee; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        .container { max-width: 400px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .title { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        #score { font-size: 18px; font-weight: bold; margin-bottom: 20px; }
+        #game-board { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; background: #ffcccb; padding: 10px; border-radius: 10px; }
+        .tile { display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; background: #ffcdd2; border-radius: 8px; transition: transform 0.2s ease-in-out; }
+        .tile.merged { animation: pop 0.3s ease-in-out; }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .btn { margin-top: 20px; padding: 10px 20px; border: none; background: #ff6b6b; color: white; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #e65c5c; }
+        .social-share { margin-top: 15px; }
+        .social-share a { margin: 5px; text-decoration: none; font-size: 20px; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="title">2048 Cupcake</h1>
+        <div id="score">Score: 0</div>
+        <div id="game-board"></div>
+        <button id="restart-btn" class="btn">Restart Game</button>
 
-<div class="container">
-    <h1>2048 Cupcake</h1>
-    <div id="score">Score: 0</div>
-    <div id="game-board"></div>
-    <button id="restart-btn" class="btn">Restart Game</button>
-    <h2>How to Play?</h2>
-    <p>Swipe tiles, merge cupcakes, and reach the ultimate 2048 cupcake! Can you win?</p>
-</div>
+        <h2 class="title">How to Play?</h2>
+        <p>Swipe to merge cupcakes and reach the ultimate tile. Master the 2048 strategy to win!</p>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const board = document.getElementById("game-board");
-    const scoreDisplay = document.getElementById("score");
-    const restartBtn = document.getElementById("restart-btn");
+        <!-- Social Share -->
+        <div class="social-share">
+            <a href="https://facebook.com/sharer/sharer.php?u=https://example.com/2048-cupcake" target="_blank">🔵 Share on Facebook</a>
+            <a href="https://twitter.com/intent/tweet?text=Play 2048 Cupcake!&url=https://example.com/2048-cupcake" target="_blank">🐦 Tweet</a>
+        </div>
+    </div>
 
-    let score = 0;
-    let grid = Array(4).fill().map(() => Array(4).fill(0));
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const board = document.getElementById("game-board");
+            const scoreDisplay = document.getElementById("score");
+            const restartBtn = document.getElementById("restart-btn");
 
-    const cupcakeIcons = {
-        2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒",
-        32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂",
-        256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆"
-    };
+            let score = 0;
+            let grid = Array(4).fill().map(() => Array(4).fill(0));
 
-    function updateScore(value) {
-        score += value;
-        scoreDisplay.textContent = `Score: ${score}`;
-    }
+            const cupcakes = { 2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒", 32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂", 256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆" };
 
-    function createBoard() {
-        board.innerHTML = "";
-        grid.forEach(row => {
-            row.forEach(tile => {
-                const tileDiv = document.createElement("div");
-                tileDiv.classList.add("tile");
-                if (tile !== 0) tileDiv.textContent = cupcakeIcons[tile] || "";
-                board.appendChild(tileDiv);
-            });
-        });
-    }
-
-    function addRandomTile() {
-        let emptyTiles = [];
-        grid.forEach((row, r) => row.forEach((tile, c) => {
-            if (tile === 0) emptyTiles.push({ r, c });
-        }));
-        if (emptyTiles.length > 0) {
-            let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-            grid[r][c] = 2;
-        }
-    }
-
-    function move(direction) {
-        let moved = false;
-        grid = grid.map(row => {
-            let newRow = [...row.filter(tile => tile), ...Array(4 - row.filter(tile => tile).length).fill(0)];
-            if (direction === "right") newRow.reverse();
-            for (let i = 0; i < 3; i++) {
-                if (newRow[i] === newRow[i + 1] && newRow[i] !== 0) {
-                    newRow[i] *= 2;
-                    newRow[i + 1] = 0;
-                    updateScore(newRow[i]);
-                }
+            function updateScore(value) {
+                score += value;
+                scoreDisplay.textContent = `Score: ${score}`;
             }
-            if (direction === "right") newRow.reverse();
-            return newRow;
+
+            function createBoard() {
+                board.innerHTML = "";
+                grid.forEach(row => {
+                    row.forEach(tile => {
+                        const tileDiv = document.createElement("div");
+                        tileDiv.classList.add("tile");
+                        if (tile !== 0) {
+                            tileDiv.textContent = cupcakes[tile] || "";
+                        }
+                        board.appendChild(tileDiv);
+                    });
+                });
+            }
+
+            restartBtn.addEventListener("click", () => {
+                grid = Array(4).fill().map(() => Array(4).fill(0));
+                score = 0;
+                updateScore(0);
+                createBoard();
+            });
+
+            createBoard();
         });
-        if (moved) addRandomTile();
-        createBoard();
-    }
-
-    restartBtn.addEventListener("click", () => {
-        grid = Array(4).fill().map(() => Array(4).fill(0));
-        score = 0;
-        updateScore(0);
-        addRandomTile();
-        createBoard();
-    });
-
-    addRandomTile();
-    createBoard();
-});
-</script>
-
+    </script>
 </body>
 </html>
