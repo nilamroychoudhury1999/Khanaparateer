@@ -3,177 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Play 2048 Cupcake - The sweetest and most addictive 2048 game! Merge cupcakes, score high, and challenge yourself.">
-    <meta name="keywords" content="2048 Cupcake, Play 2048 Online, Merge Cupcakes, 2048 Game Strategy, Puzzle Games">
-    <meta name="author" content="YourBrand">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph for Social Media -->
+    <meta name="description" content="Play 2048 Cupcake - A fun twist on the classic 2048 game! Merge cupcakes, score high, and win!">
+    <meta name="keywords" content="2048 Cupcake, Play 2048, Merge Game, Puzzle Game, Cupcake Puzzle">
     <meta property="og:title" content="2048 Cupcake - Play Now!">
-    <meta property="og:description" content="Merge cupcakes in this fun and challenging 2048 puzzle game. Can you win?">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com/2048-cupcake">
-    <meta property="og:image" content="https://yourwebsite.com/cupcake-thumbnail.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2048 Cupcake - Play Free">
-    <meta name="twitter:description" content="Enjoy the most delicious 2048 game ever! Play now and merge cupcakes to win.">
-
-    <!-- Structured Data (SEO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Game",
-      "name": "2048 Cupcake",
-      "url": "https://yourwebsite.com/2048-cupcake",
-      "description": "Merge cupcakes and score high in the 2048 Cupcake game.",
-      "genre": "Puzzle",
-      "image": "https://yourwebsite.com/cupcake-thumbnail.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "YourBrand"
-      }
-    }
-    </script>
-
-    <title>2048 Cupcake - Play Free Online</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-    
+    <meta property="og:description" content="Merge cupcakes, reach 2048, and become the ultimate cupcake master!">
+    <meta property="og:image" content="https://playcupcake.com/preview.jpg">
+    <meta property="og:type" content="game">
+    <meta property="og:url" content="https://playcupcake.com">
+    <title>2048 Cupcake - Play Now!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='22' font-size='24'>🧁</text></svg>">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background-color: #ffe5e5;
+            background-color: #f8e8e8;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
+            height: 100vh;
+            overflow: hidden;
         }
         .container {
+            width: 90%;
             max-width: 400px;
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        #score {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+        .title { font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+        #score { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
         #game-board {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 10px;
-            background: #f3c5c5;
+            grid-gap: 10px;
+            background: #e0b3b3;
             padding: 10px;
             border-radius: 10px;
+            user-select: none;
         }
         .tile {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            background-color: #fdd;
+            background-color: #f9d3d3;
             border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
             height: 60px;
         }
         .btn {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 10px 20px;
             border: none;
             background: #ff6b6b;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
         }
+        .btn:hover { background: #e65c5c; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="title">2048 Cupcake</h1>
+        <div id="score">Score: 0</div>
+        <div id="game-board"></div>
+        <button id="restart-btn" class="btn">Restart Game</button>
+        <button id="mute-btn" class="btn">🔇 Mute</button>
+        <h2 class="title">How to Play?</h2>
+        <p>Swipe tiles, merge cupcakes, and reach the ultimate 2048 cupcake! Can you win?</p>
+    </div>
 
-<div class="container">
-    <h1>2048 Cupcake</h1>
-    <div id="score">Score: 0</div>
-    <div id="game-board"></div>
-    <button id="restart-btn" class="btn">Restart</button>
-    <h2>How to Play?</h2>
-    <p>Swipe to merge cupcakes and reach 2048! Use strategy to win.</p>
-</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const board = document.getElementById("game-board");
+            const scoreDisplay = document.getElementById("score");
+            const restartBtn = document.getElementById("restart-btn");
+            const muteBtn = document.getElementById("mute-btn");
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const board = document.getElementById("game-board");
-    const scoreDisplay = document.getElementById("score");
-    const restartBtn = document.getElementById("restart-btn");
+            let score = 0;
+            let grid = Array(4).fill().map(() => Array(4).fill(0));
+            let soundEnabled = true;
+            const moveSound = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
+            const mergeSound = new Audio("https://www.fesliyanstudios.com/play-mp3/388");
 
-    let score = 0;
-    let grid = Array(4).fill().map(() => Array(4).fill(0));
+            const cupcakeIcons = { 
+                2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒",
+                32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂",
+                256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆"
+            };
 
-    const cupcakeIcons = {
-        2: "🧁", 4: "🧁🧁", 8: "🧁🍓", 16: "🧁🍒",
-        32: "🧁🍫", 64: "🧁🍩", 128: "🧁🎂",
-        256: "🧁🍰", 512: "🧁🫐", 1024: "🧁🎉", 2048: "🧁🏆"
-    };
+            function updateScore(value) {
+                score += value;
+                scoreDisplay.textContent = `Score: ${score}`;
+            }
 
-    function updateScore(value) {
-        score += value;
-        scoreDisplay.textContent = `Score: ${score}`;
-    }
+            function createBoard() {
+                board.innerHTML = "";
+                grid.forEach(row => {
+                    row.forEach(tile => {
+                        const tileDiv = document.createElement("div");
+                        tileDiv.classList.add("tile");
+                        if (tile !== 0) { tileDiv.textContent = cupcakeIcons[tile] || ""; }
+                        board.appendChild(tileDiv);
+                    });
+                });
+            }
 
-    function createBoard() {
-        board.innerHTML = "";
-        grid.forEach(row => {
-            row.forEach(tile => {
-                const tileDiv = document.createElement("div");
-                tileDiv.classList.add("tile");
-                tileDiv.textContent = tile !== 0 ? cupcakeIcons[tile] : "";
-                board.appendChild(tileDiv);
+            function addRandomTile() {
+                let emptyTiles = [];
+                grid.forEach((row, r) => row.forEach((tile, c) => { if (tile === 0) emptyTiles.push({ r, c }); }));
+                if (emptyTiles.length > 0) {
+                    let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+                    grid[r][c] = 2;
+                }
+            }
+
+            function slide(row) {
+                let arr = row.filter(tile => tile);
+                let missing = 4 - arr.length;
+                return [...arr, ...Array(missing).fill(0)];
+            }
+
+            function combine(row) {
+                for (let i = 0; i < row.length - 1; i++) {
+                    if (row[i] !== 0 && row[i] === row[i + 1]) {
+                        row[i] *= 2;
+                        row[i + 1] = 0;
+                        updateScore(row[i]);
+                        if (soundEnabled) mergeSound.play();
+                    }
+                }
+                return row;
+            }
+
+            function move(direction) {
+                if (soundEnabled) moveSound.play();
+                let moved = false;
+                if (direction === "left" || direction === "right") {
+                    grid = grid.map(row => {
+                        let newRow = slide(combine(slide(direction === "right" ? row.reverse() : row)));
+                        return direction === "right" ? newRow.reverse() : newRow;
+                    });
+                }
+                addRandomTile();
+                createBoard();
+            }
+
+            document.addEventListener("keydown", (e) => {
+                if (["ArrowLeft", "ArrowRight"].includes(e.key)) move(e.key.replace("Arrow", "").toLowerCase());
             });
+
+            muteBtn.addEventListener("click", () => {
+                soundEnabled = !soundEnabled;
+                muteBtn.textContent = soundEnabled ? "🔊 Unmute" : "🔇 Mute";
+            });
+
+            restartBtn.addEventListener("click", () => {
+                grid = Array(4).fill().map(() => Array(4).fill(0));
+                score = 0;
+                updateScore(0);
+                addRandomTile();
+                addRandomTile();
+                createBoard();
+            });
+
+            addRandomTile();
+            addRandomTile();
+            createBoard();
         });
-    }
-
-    function addRandomTile() {
-        let emptyTiles = [];
-        grid.forEach((row, r) => row.forEach((tile, c) => {
-            if (tile === 0) emptyTiles.push({ r, c });
-        }));
-        if (emptyTiles.length > 0) {
-            let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-            grid[r][c] = 2;
-        }
-    }
-
-    function move(direction) {
-        let moved = false;
-        grid = grid.map(row => {
-            let newRow = [...row.filter(tile => tile), ...Array(4 - row.filter(tile => tile).length).fill(0)];
-            return newRow;
-        });
-        if (moved) addRandomTile();
-        createBoard();
-    }
-
-    restartBtn.addEventListener("click", () => {
-        grid = Array(4).fill().map(() => Array(4).fill(0));
-        score = 0;
-        updateScore(0);
-        addRandomTile();
-        createBoard();
-    });
-
-    addRandomTile();
-    createBoard();
-});
-</script>
-
+    </script>
 </body>
 </html>
